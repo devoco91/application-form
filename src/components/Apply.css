@@ -1,0 +1,142 @@
+
+.application-container{
+    background: #F1F1F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 81vh;
+    display: flex;
+    text-align: center;
+    place-items: center;
+    overflow: hidden;
+    font-family: poppins;
+  }
+
+
+  .testimony a{
+    text-decoration: none;
+  }
+
+  .testimony{
+    font-size: 15px;
+  }
+  
+  .application-form{
+    border-radius: 20px;
+    width: 500px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #ecf0f3;
+    box-shadow: 14px 14px 20px #cbced1,
+    -14px -14px 20px white;
+  }
+  
+  .application-container form input,
+  select,
+  option,
+  optgroup {
+      background: #ecf0f3;
+      padding: 15px;
+      margin-top: 10px;
+      height: 30px;
+      /* width: 500px; */
+      font-size: 14px;
+      border-radius: 50px;
+      box-shadow: inset 6px 6px 6px #cbced1,
+      inset -6px -6px 6px white;
+  }
+  
+  .application-container span{
+    font-size: 12px;
+    color: red;
+    font-style: italic;
+    display: none;
+  }
+  
+  input:invalid[focus="true"] ~ span{
+    display: block;
+  }
+  
+  
+  label,
+  input,
+  select,
+  option,
+  optgroup,
+  .application-button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+  }
+  
+  .application-button{
+     box-shadow: 14px 14px 20px #cbced1,
+     -14px -14px 20px white;
+    border-radius: 50px;
+     width: 150px;
+  }
+  
+  .application-button:hover{
+    background-color: #7373f5;
+    color: #fff;
+    border-radius: 5px;
+     box-shadow: 0 0 5px #03e9f4,
+     0 0 25px #03e9f4,
+     0 0 50px #03e9f4,
+     0 0 100px #03e9f4;
+  }
+  
+  .sub255,
+  .sub2 {
+    display: none;
+  }
+  
+  :checked~.sub1,
+  :checked~.sub255,
+  :checked~.sub2 {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .sub1 {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  
+  .display-time label{
+    padding: 0 15px;
+    font-size: 15px;
+  }
+
+
+  @media(max-width:500px){
+    
+  .application-container form input,
+  select,
+  option,
+  optgroup {
+      background: #ecf0f3;
+      padding: 15px;
+      margin-top: 10px;
+      height: 50px!important;
+      /* width: 500px; */
+      font-size: 14px;
+      border-radius: 10px;
+      box-shadow: inset 6px 6px 6px #cbced1,
+      inset -6px -6px 6px white;
+  }
+
+  .application-button{
+    box-shadow: 14px 14px 20px #cbced1,
+    -14px -14px 20px white;
+   border-radius: 10px;
+    width: 150px;
+    margin-top: 30px;
+    height: 40px;
+ }
+  }
