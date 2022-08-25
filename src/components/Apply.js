@@ -1,97 +1,96 @@
 import React, {useState, useEffect} from 'react';
 import './Apply.css'
-import axios from 'axios';
+import axios from 'axios'
 
 
-const baseUrl='http://127.0.0.1:8000/applicant/' 
+
+
+const baseUrl='http://127.0.0.1:8000/applicant/'
 const Apply = () => {
 
-  useEffect(() =>{
-    window.scrollTo(0,0)
+  useEffect(() => {
+    window.scrollTo(0, 0)
   }, [])
 
+  const [message, setMessage] = useState({error: false, msg: ""})
+  const [studentsData, setStudentsData]=useState({
 
-  const[message, setMessage]=useState({error:false, msg:''})
-  const[studentsData, setStudentsData]= useState({
     'firstname':'',
     'lastname':'',
     'email':'',
     'address':'',
     'phone':'',
-    'course':'',
     'center':'',
+    'course':'',
     'mode':'',
     'status':''
 
   })
-
-  const[focus, setFocus]=useState(false)
-
-
-  const submitForm= () =>{
-    const studentFormData=new FormData()
-    studentFormData.append('firstname',setStudentsData.firstname)
-    studentFormData.append('lastname',setStudentsData.lastname)
-    studentFormData.append('email',setStudentsData.email)
-    studentFormData.append('address',setStudentsData.address)
-    studentFormData.append('phone',setStudentsData.phone)
-    studentFormData.append('course',setStudentsData.course)
-    studentFormData.append('center',setStudentsData.center)
-    studentFormData.append('mode', setStudentsData.mode)
+  const [focus, setFocus] = useState(false)
+	
 
 
-    try{
-      axios.post(baseUrl, studentsData).then((response) =>{
-        setStudentsData({
-    'firstname':'',
-    'lastname':'',
-    'email':'',
-    'address':'',
-    'phone':'',
-    'course':'',
-    'center':'',
-    'mode':'',
-    'status':'success',
 
-        })
-        console.log(response)
-        if(studentsData===''){
-          setMessage({error:false, msg:'All fields are required'})
-          return;
-        }
+const submitForm =()=>{
+  const studentFormData=new FormData()
+  studentFormData.append('firstname',studentsData.firstname)
+  studentFormData.append('lastname',studentsData.lastname)
+  studentFormData.append('email',studentsData.email)
+  studentFormData.append('address',studentsData.address)
+  studentFormData.append('phone',studentsData.phone)
+  studentFormData.append('center',studentsData.center)
+  studentFormData.append('course',studentsData.course)
+  studentFormData.append('mode',studentsData.mode)
 
 
-      
 
+  try{
+  axios.post(baseUrl, studentsData).then((response) =>{
+    setStudentsData({
+'firstname':'',
+'lastname':'',
+'email':'',
+'address':'',
+'phone':'',
+'center':'',
+'course':'',
+'mode':'',
+'status':true
     })
+    console.log(response)
+    if(studentsData === ""){
+      setMessage({error:false, msg: "All fields are mandatory!"});
+      return;
+    }
+   
+  })
   }catch(error){
     console.log(error)
-    setStudentsData({'status':'error'})
-  }
-  alert('Form submitted successfully')
-
+    setStudentsData({'status':false})
   }
 
+  alert('Application submitted successfully')
+ 
+  // navigate("/", {replace: true});
+}
 
-  const handleFocus =(e)=>{
-    setFocus(true)
-  }
+const handleFocus =(e)=>{
+  setFocus(true);
+};
 
 
 
   return ( <div>
-    {/* <NavBar/> */}
+    
 
     <div className="application-container py-5">
-  <form onsubmit={submitForm} className="application-form">
-    <input type="text"  onChange={(e)=>{setStudentsData({...studentsData,firstname:e.target.value})}}  value={studentsData.firstname} placeholder="FirstName" pattern='/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/){3,15}' onBlur={handleFocus} required focus={focus.toString()}/>
+  <form onSubmit={submitForm} className="application-form">
+    <input type="text"  onChange={(e)=>{setStudentsData({...studentsData, firstname:e.target.value})}}  value={studentsData.firstname} placeholder="FirstName" pattern='/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/){3,15}' onBlur={handleFocus} required focus={focus.toString()}/>
     <span>Input a valid firstname</span>
 
-    <input type="text"  onChange={(e)=>{setStudentsData({...studentsData,lastname:e.target.value})}}  value={studentsData.lastname} placeholder="LastName" pattern='/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/){3,15}' onBlur={handleFocus} required focus={focus.toString()}/>
-    <span>Input a valid lastname</span>
+    <input type="text"   onChange={(e)=>{setStudentsData({ ...studentsData,lastname:e.target.value})}}  value={studentsData.lastname} placeholder="LastName" pattern='/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/){3,15}' onBlur={handleFocus} required focus={focus.toString()}/>
+        <span>Input a valid lastname</span>
 
-    
-    
     <input type="email"   onChange={(e)=>{setStudentsData({...studentsData,email:e.target.value})}}  value={studentsData.email} placeholder="Email" onBlur={handleFocus} required focus={focus.toString()}/>
     <span>input a valid email account</span>
 
@@ -114,8 +113,8 @@ const Apply = () => {
     <select name="Course" id="Course-select" value={studentsData.center}  onChange={(e)=>{setStudentsData({...studentsData,center:e.target.value})}}>
     <option value="No location selected" selected>Select a desired center</option>
     <option value="Ogba">Ogba</option>
-    <option value="Olowora,Ojodu-Berger">Ojodu-Berger</option>
-    <option value="Ajah" >Ajah</option>
+    {/* <option value="Olowora,Ojodu-Berger">Ojodu-Berger</option> */}
+    {/* <option value="Ajah" >Ajah</option> */}
     </select> </label>
 
     <label name="Course">Course:
@@ -124,9 +123,9 @@ const Apply = () => {
     <option value="Frontend Development">Frontend Development</option>
     <option value="Backend Development">Backend Development</option>
     <option value="Fullstack Developement" >Fullstack Developement</option>
-    <option value="UI/UX Course">UI/UX Course</option>
+    {/* <option value="UI/UX Course">UI/UX Course</option> */}
     {/* <option value="App Development(Android and iOS)">App Development(Android and iOS)</option> */}
-    <option value="Data Science & AI">Data Science & AI</option>
+    {/* <option value="Data Science & AI">Data Science & AI</option> */}
     </select> </label>
     <br/>
 
@@ -136,12 +135,11 @@ const Apply = () => {
     <option value="No mode selected" selected>Select a study mode</option>
     <option value="Weekday">Weekday</option>
     <option value="Weekend">Weekend</option>
+    <option value="Online">Online</option>
     </select> </label>
     
     <br/>
     	<button className="application-button" type='submit'>Submit</button>
-
-   
   </form>
   </div>
 
