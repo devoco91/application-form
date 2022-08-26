@@ -32,15 +32,15 @@ const Apply = () => {
 
 
 const submitForm =()=>{
-  const studentFormData=new FormData()
-  studentFormData.append('firstname',studentsData.firstname)
-  studentFormData.append('lastname',studentsData.lastname)
-  studentFormData.append('email',studentsData.email)
-  studentFormData.append('address',studentsData.address)
-  studentFormData.append('phone',studentsData.phone)
-  studentFormData.append('center',studentsData.center)
-  studentFormData.append('course',studentsData.course)
-  studentFormData.append('mode',studentsData.mode)
+  // const studentFormData=new FormData()
+  // studentFormData.append('firstname',studentsData.firstname)
+  // studentFormData.append('lastname',studentsData.lastname)
+  // studentFormData.append('email',studentsData.email)
+  // studentFormData.append('address',studentsData.address)
+  // studentFormData.append('phone',studentsData.phone)
+  // studentFormData.append('center',studentsData.center)
+  // studentFormData.append('course',studentsData.course)
+  // studentFormData.append('mode',studentsData.mode)
 
 
 
