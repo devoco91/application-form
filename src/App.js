@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Apply from './components/Apply';
 import Contact from './components/Contact';
+import Store from './components/Store';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Router>
         <Routes>
           <Route>
-          <Route path="/" element={ <Apply/> } />
+          <Route path="/" element={ <Store/> } />
+          {/* <Route path="/" element={ <Apply/> } /> */}
           <Route path="/contact" element={ <Contact/> } />
           </Route>
         </Routes>
